@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e56e3310-c384-4d60-bd09-322a69ebdc79" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.joguito3dclara/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.joguito3dclara/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/mapclara.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/mapclara.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/Player.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +75,7 @@
       <updated>1698254694178</updated>
       <workItem from="1698254709343" duration="29000" />
       <workItem from="1698254783867" duration="3218000" />
-      <workItem from="1698853515194" duration="939000" />
+      <workItem from="1698853515194" duration="6113000" />
     </task>
     <servers />
   </component>
