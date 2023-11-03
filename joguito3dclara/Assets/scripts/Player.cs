@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     void Move()
     {
         if (controller.isGrounded)
-        {
+        { 
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
 
@@ -48,19 +48,28 @@ public class Player : MonoBehaviour
 
             if (direction.magnitude > 0)
             {
-                float angle  = Mathf.Atan2(direction.x,direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-                float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, angle, ref turnSmoothVelocity, smoothRotTime);
+                if (!anim.GetBool("attacking"))
+                {
+                    float angle  = Mathf.Atan2(direction.x,direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+                    float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, angle, ref turnSmoothVelocity, smoothRotTime);
             
-                transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
+                    transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
 
-                moveDirection = Quaternion.Euler(0f, angle, 0) * Vector3.forward * speed ;
+                    moveDirection = Quaternion.Euler(0f, angle, 0) * Vector3.forward * speed ;
 
-                anim.SetInteger("transition", 1);
+                    anim.SetInteger("transition", 1);
+                }
+                else
+                {
+                    anim.SetBool("walking", false);
+                    moveDirection = Vector3.zero;
+                }
+                
             }
             else
-
             {
-                //anim.SetInteger("transition", 0);
+                anim.SetBool("walking", false);
+                anim.SetInteger("transition", 0);
                 moveDirection = Vector3.zero;
                 
             }
@@ -77,15 +86,28 @@ public class Player : MonoBehaviour
     {
         if (controller.isGrounded)
         {
+            
             if (Input.GetMouseButtonDown(0))
             {
-                StartCoroutine("Attack");
+                if (anim.GetBool("walking"))
+                {
+                    anim.SetBool("walking", false);
+                    anim.SetInteger("transition",0);
+                }
+
+                if (anim.GetBool("walking"))
+                {
+                    StartCoroutine("Attack");
+                }
+                
+                
             }
         }
     }
 
     IEnumerator Attack()
     {
+        anim.SetBool("attacking", true);
         anim.SetInteger("transition", 2);
         
         yield return new WaitForSeconds(0.4f);
@@ -100,6 +122,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         anim.SetInteger("trasition", 0);
+        anim.SetBool("attacking", false);
 
     }
 
