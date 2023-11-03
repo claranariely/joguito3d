@@ -20,6 +20,9 @@ public class CombatEnemy : MonoBehaviour
 
     [Header("Others")] 
     private Transform player;
+
+    private bool walking;
+    private bool attacking;
     
     // Start is called before the first frame update
     void Start()
@@ -38,16 +41,36 @@ public class CombatEnemy : MonoBehaviour
 
         if (distance <= lookRadius)
         {
-            agent.SetDestination(player.position);
+            agent.isStopped = false;
+            
+            if (!attacking)
+            {
+                agent.SetDestination(player.position);
+                anim.SetBool("Walk Forward", true);
+                walking = true;
+            }
+            
+            
 
             if (distance <= agent.stoppingDistance)
             {
+
+                agent.isStopped = true;
+
+            }
+            else
+            {
+                attacking = false;
                 
             }
         }
         else
         {
-            
+            agent.isStopped = true;
+            anim.SetBool("Walk Forward", false);
+            walking = false;
+            attacking = false;
+           
         }
     }
 
