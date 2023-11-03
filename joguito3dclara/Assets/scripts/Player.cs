@@ -13,7 +13,9 @@ public class Player : MonoBehaviour
 
     private Transform cam;
 
-    private Vector3 moveDirection;
+    Vector3 moveDirection;
+
+    private bool isWalking;
     
     public float smoothRotTime;
     private float turnSmoothVelocity;
@@ -58,6 +60,8 @@ public class Player : MonoBehaviour
                     moveDirection = Quaternion.Euler(0f, angle, 0) * Vector3.forward * speed ;
 
                     anim.SetInteger("transition", 1);
+
+                    isWalking = true;
                 }
                 else
                 {
@@ -66,12 +70,15 @@ public class Player : MonoBehaviour
                 }
                 
             }
-            else
+            else if(isWalking)
             {
+                
                 anim.SetBool("walking", false);
                 anim.SetInteger("transition", 0);
                 moveDirection = Vector3.zero;
-                
+
+                isWalking = false;
+
             }
         
         }
@@ -95,7 +102,7 @@ public class Player : MonoBehaviour
                     anim.SetInteger("transition",0);
                 }
 
-                if (anim.GetBool("walking"))
+                if (!anim.GetBool("walking"))
                 {
                     StartCoroutine("Attack");
                 }
