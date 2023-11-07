@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e56e3310-c384-4d60-bd09-322a69ebdc79" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.joguito3dclara/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.joguito3dclara/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/CombatEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/CombatEnemy.cs" afterDir="false" />
-    </list>
+    <list default="true" id="e56e3310-c384-4d60-bd09-322a69ebdc79" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +76,7 @@
       <workItem from="1699009801069" duration="1843000" />
       <workItem from="1699024964235" duration="1323000" />
       <workItem from="1699027421970" duration="4020000" />
-      <workItem from="1699371603728" duration="5598000" />
+      <workItem from="1699371603728" duration="5982000" />
     </task>
     <servers />
   </component>
