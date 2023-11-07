@@ -13,6 +13,7 @@ public class CombatEnemy : MonoBehaviour
     public float movementSpeed;
     public float lookRadius;
     public float colliderRadius = 2f;
+    public float rotationSpeed;
 
     [Header("Components")] 
     private Animator anim;
@@ -41,31 +42,36 @@ public class CombatEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(player.position, transform.position);
-
-        if (distance <= lookRadius)
+        if (totalHealth <= 0)
         {
-            agent.isStopped = false;
-            
-            if (!attacking)
-            {
-                agent.SetDestination(player.position);
-                anim.SetBool("Walk Forward", true);
-                walking = true;
-            }
-            
-            if (distance <= agent.stoppingDistance)
-            {
+            float distance = Vector3.Distance(player.position, transform.position);
 
-                StartCoroutine("Attack");
-
-            }
-            else
+            if (distance <= lookRadius)
             {
-                attacking = false;
+                agent.isStopped = false;
+            
+                if (!attacking)
+                {
+                    agent.SetDestination(player.position);
+                    anim.SetBool("Walk Forward", true);
+                    walking = true;
+                }
+            
+                if (distance <= agent.stoppingDistance)
+                {
+
+                    StartCoroutine("Attack");
+                    LookTarget();
+
+                }
+                else
+                {
+                    attacking = false;
                 
-            }
+                }
+            } 
         }
+        
         else
         {
             agent.isStopped = true;
@@ -75,9 +81,10 @@ public class CombatEnemy : MonoBehaviour
         }
     }
     
+    
     IEnumerator Attack()
     {
-        if (!waitFor)
+        if (!waitFor && !hiting)
         {
             waitFor = true;
             attacking = true;
@@ -114,10 +121,10 @@ public class CombatEnemy : MonoBehaviour
         
         if(totalHealth > 0)
         {
-            
             StopCoroutine("Attack");
             anim.SetTrigger("Take Damage");
             hiting = true;
+            StartCoroutine("RecoveryFromhit");
 
         }
         else
@@ -134,6 +141,13 @@ public class CombatEnemy : MonoBehaviour
         anim.SetBool("Bite Attack", false);
         hiting = false;
         waitFor = false;
+    }
+
+    void LookTarget()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation,lookRotation, Time.deltaTime * rotationSpeed );
     }
 
     private void OnDrawGizmosSelected()

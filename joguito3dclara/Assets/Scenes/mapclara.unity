@@ -1000,6 +1000,7 @@ MonoBehaviour:
   movementSpeed: 0
   lookRadius: 4.55
   colliderRadius: 2
+  rotationSpeed: 0
 --- !u!1001 &138184493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2398,7 +2399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400120, guid: b85694974d0a53e4a9e89e26232c252a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 517.84
+      value: 516.51
       objectReference: {fileID: 0}
     - target: {fileID: 400120, guid: b85694974d0a53e4a9e89e26232c252a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5074,7 +5075,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155599224}
-  m_LocalRotation: {x: 0.14819047, y: -0.000000019024917, z: 0.0000000028507876, w: 0.98895884}
+  m_LocalRotation: {x: 0.14819047, y: 0.000000019024917, z: -0.0000000028507876, w: 0.98895884}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
