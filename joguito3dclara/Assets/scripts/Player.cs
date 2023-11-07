@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private CharacterController controller;
     public float speed;
     public float gravity;
+    public float damage = 20;
 
     private Animator anim;
 
@@ -123,7 +124,14 @@ public class Player : MonoBehaviour
 
         foreach (Transform e in enemyList)
         {
-            Debug.Log(e.name);
+
+            CombatEnemy enemy = e.GetComponent<CombatEnemy>();
+
+            if (enemy != null)
+            {
+                enemy.GetHit(damage);
+            }
+           
         }
 
         yield return new WaitForSeconds(1f);
@@ -135,6 +143,7 @@ public class Player : MonoBehaviour
 
     void GetEnemiesList()
     {
+        enemyList.Clear();
         foreach (Collider c in Physics.OverlapSphere((transform.position + transform.forward * colliderRadius), colliderRadius ))
         {
             if (c.gameObject.CompareTag("Enemy"))

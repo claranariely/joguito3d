@@ -8,10 +8,11 @@ using UnityEngine.AI;
 public class CombatEnemy : MonoBehaviour
 {
     [Header("Atributtes")]
-    public float totalHealth;
+    public float totalHealth = 100;
     public float attackDamage;
     public float movementSpeed;
     public float lookRadius;
+    public float colliderRadius = 2f;
 
     [Header("Components")] 
     private Animator anim;
@@ -23,6 +24,9 @@ public class CombatEnemy : MonoBehaviour
 
     private bool walking;
     private bool attacking;
+    private bool hiting;
+    
+    private bool waitFor;
     
     // Start is called before the first frame update
     void Start()
@@ -50,12 +54,10 @@ public class CombatEnemy : MonoBehaviour
                 walking = true;
             }
             
-            
-
             if (distance <= agent.stoppingDistance)
             {
 
-                agent.isStopped = true;
+                StartCoroutine("Attack");
 
             }
             else
@@ -70,8 +72,68 @@ public class CombatEnemy : MonoBehaviour
             anim.SetBool("Walk Forward", false);
             walking = false;
             attacking = false;
-           
         }
+    }
+    
+    IEnumerator Attack()
+    {
+        if (!waitFor)
+        {
+            waitFor = true;
+            attacking = true;
+            walking = false;
+            anim.SetBool("Walk Forward", false);
+            anim.SetBool("Bite Attack", true);
+            yield return new WaitForSeconds(1.2f);
+            GetPlayer();
+            //yield return new WaitForSeconds(1f);
+            waitFor = false;
+        }
+        
+        
+        
+    }
+
+    void GetPlayer()
+    {
+        
+        foreach (Collider c in Physics.OverlapSphere((transform.position + transform.forward * colliderRadius), colliderRadius ))
+        {
+            if (c.gameObject.CompareTag("Player"))
+            {
+                
+                Debug.Log("bateu no player");
+                
+            }
+        }
+    }
+
+    public void GetHit(float damage)
+    {
+        totalHealth -= damage;
+        
+        if(totalHealth > 0)
+        {
+            
+            StopCoroutine("Attack");
+            anim.SetTrigger("Take Damage");
+            hiting = true;
+
+        }
+        else
+        {
+            
+           anim.SetTrigger("Die"); 
+        }
+    }
+
+    IEnumerator RecoveryFromhit()
+    {
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("Walk Forward", false);
+        anim.SetBool("Bite Attack", false);
+        hiting = false;
+        waitFor = false;
     }
 
     private void OnDrawGizmosSelected()
