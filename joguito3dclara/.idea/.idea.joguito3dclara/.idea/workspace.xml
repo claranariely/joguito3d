@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e56e3310-c384-4d60-bd09-322a69ebdc79" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.joguito3dclara/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.joguito3dclara/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/scripts/CombatEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/CombatEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +82,7 @@
       <workItem from="1699024964235" duration="1323000" />
       <workItem from="1699027421970" duration="4020000" />
       <workItem from="1699371603728" duration="6460000" />
+      <workItem from="1699462870014" duration="4732000" />
     </task>
     <servers />
   </component>

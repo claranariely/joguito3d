@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964128, b: 0.5748173, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -996,11 +996,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 100
-  attackDamage: 0
+  attackDamage: 50
   movementSpeed: 0
   lookRadius: 4.55
   colliderRadius: 2
   rotationSpeed: 0
+  playerIsDead: 0
 --- !u!1001 &138184493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9573,8 +9574,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125556632}
-  m_LocalRotation: {x: 0.16610725, y: 0.000000016967343, z: -0.0000000028581044, w: 0.9861077}
-  m_LocalPosition: {x: 500.27026, y: 3.68, z: 501.03}
+  m_LocalRotation: {x: 0.19696467, y: 0.6275151, z: 0.053410843, w: 0.7513835}
+  m_LocalPosition: {x: 696.3646, y: -2407.2078, z: -413.24734}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9740,9 +9741,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ce082ae0755bf46ba7b4337329c391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalHealth: 100
   speed: 4
   gravity: 150
   damage: 20
+  isDead: 0
   smoothRotTime: 0.1
   colliderRadius: 1.21
   enemyList: []
