@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            anim.SetInteger("trasition", 0);
+            anim.SetInteger("transition", 0);
             anim.SetBool("attacking", false);
             waitfor = false;
         }

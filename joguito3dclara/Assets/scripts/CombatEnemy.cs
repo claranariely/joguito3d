@@ -50,7 +50,7 @@ public class CombatEnemy : MonoBehaviour
             if (distance <= lookRadius)
             {
                 agent.isStopped = false;
-            
+
                 if (!attacking)
                 {
                     agent.SetDestination(player.position);
@@ -115,7 +115,7 @@ public class CombatEnemy : MonoBehaviour
     void GetPlayer()
     {
         
-        foreach (Collider c in Physics.OverlapSphere((transform.position + transform.forward * colliderRadius), colliderRadius ))
+        foreach (Collider c in Physics.OverlapSphere((transform.position + transform.forward * colliderRadius), colliderRadius))
         {
             if (c.gameObject.CompareTag("Player"))
             {
