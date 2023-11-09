@@ -7,29 +7,26 @@ using UnityEngine.AI;
 
 public class CombatEnemy : MonoBehaviour
 {
-    [Header("Atributtes")]
-    public float totalHealth = 100;
+    [Header("Atributtes")] public float totalHealth = 100;
     public float attackDamage;
     public float movementSpeed;
     public float lookRadius;
     public float colliderRadius = 2f;
     public float rotationSpeed;
 
-    [Header("Components")] 
-    private Animator anim;
+    [Header("Components")] private Animator anim;
     private CapsuleCollider capsule;
     private NavMeshAgent agent;
 
-    [Header("Others")] 
-    private Transform player;
+    [Header("Others")] private Transform player;
 
     private bool walking;
     private bool attacking;
     private bool hiting;
-    
+
     private bool waitFor;
     public bool playerIsDead;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +40,7 @@ public class CombatEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (totalHealth <= 0)
+        if (totalHealth > 0)
         {
             float distance = Vector3.Distance(player.position, transform.position);
 
@@ -57,7 +54,7 @@ public class CombatEnemy : MonoBehaviour
                     anim.SetBool("Walk Forward", true);
                     walking = true;
                 }
-            
+
                 if (distance <= agent.stoppingDistance)
                 {
 
@@ -68,22 +65,21 @@ public class CombatEnemy : MonoBehaviour
                 else
                 {
                     attacking = false;
-                
+
                 }
-            } 
-        }
-        
-        else
-        {
-            agent.isStopped = true;
-            anim.SetBool("Walk Forward", false);
-            walking = false;
-            attacking = false;
+            }
+            else
+            {
+                agent.isStopped = true;
+                anim.SetBool("Walk Forward", false);
+                walking = false;
+                attacking = false;
+            }
         }
     }
-    
-    
-    
+
+
+
     IEnumerator Attack()
     {
         if (!waitFor && !hiting && !playerIsDead)
