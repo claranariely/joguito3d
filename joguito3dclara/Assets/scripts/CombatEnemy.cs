@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = System.Random;
 
 public class CombatEnemy : MonoBehaviour
 {
@@ -27,13 +29,18 @@ public class CombatEnemy : MonoBehaviour
     private bool waitFor;
     public bool playerIsDead;
 
-    // Start is called before the first frame update
+    [Header("WaiPoints")] 
+    public List<Transform> wayPoints = new List<Transform>();
+    public int currentPathIndex;
+    public float pathDistance;
+
+// Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         capsule = GetComponent<CapsuleCollider>();
         agent = GetComponent<NavMeshAgent>();
-
+        
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -70,11 +77,32 @@ public class CombatEnemy : MonoBehaviour
             }
             else
             {
-                agent.isStopped = true;
+                
+               // agent.isStopped = true;
                 anim.SetBool("Walk Forward", false);
                 walking = false;
                 attacking = false;
+                MoveToWayPoint();
             }
+        }
+    }
+    
+    void MoveToWayPoint()
+    {
+        if (wayPoints.Count > 0)
+        {
+            float distance = Vector3.Distance(wayPoints[currentPathIndex].position, transform.position);
+            agent.destination = wayPoints[currentPathIndex].position;
+            
+            if (distance <= pathDistance)
+            {
+                // o erro
+                //currentPathIndex = Random.Range(0, wayPoints.Count);
+
+            }
+            
+            anim.SetBool("Walk Forward", true);
+            walking = true;
         }
     }
 
